@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Gastos" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14fc8851-b728-4f19-8b6f-807a35f1dcde">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM Tbl_Mv_Gastos AS A, Tbl_mv_Tipo_Gastos AS B
+WHERE A.Secuencia_Tipo_Gasto = B.Secuencia_Tipo_Gasto]]>
+	</queryString>
+	<field name="Secuencia_Gastos" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Secuencia_Gastos"/>
+	</field>
+	<field name="Descripcion_Tipo_Gasto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Descripcion_Tipo_Gasto"/>
+	</field>
+	<field name="Descripcion_gasto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Descripcion_gasto"/>
+	</field>
+	<field name="Costo_Gasto" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Costo_Gasto"/>
+	</field>
+	<field name="Fecha_Gasto" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha_Gasto"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="418816ad-3b7f-4eee-8ae7-09f5f5df3662"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="55c02dba-3cb5-4a2e-9b6c-9ffa48624da3"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Gastos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="885d40ce-f217-407d-a35c-4d040c5b3d3c"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lácteos Pueblo Viejo]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="11997667-3a30-4323-8584-b0d8ac69af77"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="90" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="eb9ea786-f11e-4e92-be5d-ef9c38146d6e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f360096-f289-4e85-8a0f-554b67947baf"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="90" y="0" width="132" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a17e6c1e-64b9-40f5-99d7-c5b07bfa124b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef949b52-7d2e-4a93-9606-429c27d75bb2"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fab179e1-13c4-4008-9e5e-872aea91e861">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b5c0b32-1e02-4e01-8980-460f11afdd57"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7bfdbb06-4130-4689-9420-1155a38bd37a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bad66ccc-e0fe-4797-adaa-e382d860a54b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0eddcdcf-6fc8-407b-a139-efb3cd262ef2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="49103373-e26d-4eba-a485-54c0e2aec306"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="265db8a1-5e7f-4fb4-a06a-1d3cfcad3395"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="90" height="20" uuid="19479508-03b4-4588-908d-cd45acbc2114">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f360096-f289-4e85-8a0f-554b67947baf"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Secuencia_Gastos}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="90" y="0" width="132" height="20" uuid="49a485d1-17a1-4c47-b6c9-c8c0c9396232">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef949b52-7d2e-4a93-9606-429c27d75bb2"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descripcion_Tipo_Gasto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="222" y="0" width="111" height="20" uuid="8481394d-ce62-44c5-bf05-3693400c0c0b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b5c0b32-1e02-4e01-8980-460f11afdd57"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descripcion_gasto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="333" y="0" width="111" height="20" uuid="abb0fee1-7c6f-4e1e-969d-c1390d16d438">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bad66ccc-e0fe-4797-adaa-e382d860a54b"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Costo_Gasto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="444" y="0" width="111" height="20" uuid="b248b4f5-b83e-446a-a4dd-96c57bfbf79d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="49103373-e26d-4eba-a485-54c0e2aec306"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha_Gasto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="13ef0fb8-009f-48d4-8089-1b070eb77600"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9adc42fe-4e26-47b3-9e62-8a57907d5a40"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="9e1d7ad7-cc2c-4c23-9463-6475a9a7a9ca"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

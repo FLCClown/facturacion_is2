@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Ms_Conexion {
@@ -19,28 +22,34 @@ public class Ms_Conexion {
     static Connection contacto = null;
     public static String Usuario;
     public static String Password;
-    public static boolean status = false; 
-    
+    public static boolean status = false;
    
      public static Connection getConexion(){
         status = false;
-        String url = "jdbc:sqlserver://FLCCLOWN\\MSSQLSERVER2014;databaseName=SRV_BD_APP_SINVEN";
-//        try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");            
-//            
-//        }catch (ClassNotFoundException e){
-//            JOptionPane.showMessageDialog(null, "No se pudo establece la conexion." + e.getMessage(),
-//            "Error de Conexion",JOptionPane.ERROR_MESSAGE);
-//            
-//        }  
+        //Login de legado para referencia
+        //String url = "jdbc:sqlserver://FLCCLOWN\\MSSQLSERVER2014:1433;databaseName=SRV_BD_APP_SINVEN";
+        ////String[] credenciales = getCredenciales();
+        String[] credenciales = new Ms_GestionArchivo("src\\Misc\\CredencialesSQL.txt").leerArchivo();
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            
+        }catch (ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null, "No se pudo establece la conexion." + e.getMessage(),
+            "Error de Conexion",JOptionPane.ERROR_MESSAGE);
+            
+        }  
         
         
        try{
-            contacto = DriverManager.getConnection(url, "sa", "Ujcv2020");
+            //Login de legado para referencia
+            //contacto = DriverManager.getConnection(url, "sa", "Ujcv2020");
+            contacto = DriverManager.getConnection(credenciales[0], credenciales[1], credenciales[2]);
             status = true;
             
         }catch (SQLException e){
-             
+             JOptionPane.showMessageDialog(null, "No se pudo establecer la conexion." + e.getMessage()
+                     + "\n\nVerifique sus credenciales de SQL",
+            "Error de Conexion",JOptionPane.ERROR_MESSAGE);
         }
         return contacto;
     
@@ -103,6 +112,22 @@ public class Ms_Conexion {
      
      
      
+     }
+     
+     public static String[] getCredenciales(){
+        String[] credenciales = new String[3];
+        File texto = new File("src\\Misc\\CredencialesSQL.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(texto));
+            for(int i = 0; i < 3; i++){
+                credenciales[i] = br.readLine();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Ms_Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Ms_Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return credenciales;
      }
      
      

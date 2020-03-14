@@ -5,6 +5,7 @@
  */
 package src;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -16,6 +17,11 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class Mi_Frm_Inventario extends javax.swing.JFrame {
@@ -66,6 +72,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         Cb_Año = new javax.swing.JComboBox<>();
         BotonBuscarRegistros = new javax.swing.JButton();
         BotonSalir = new javax.swing.JButton();
+        BotonImprimir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -77,6 +84,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         Radiogastoventa = new javax.swing.JRadioButton();
         Boton_Guardar = new javax.swing.JButton();
         Boton_Salir = new javax.swing.JButton();
+        BotonReporteGasto = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -87,6 +95,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         BtonGuardarMuestras = new javax.swing.JButton();
         BotonSAlirMuestras = new javax.swing.JButton();
+        BotonReporteMuestra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -125,7 +134,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Tbl_Consultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Tbl_Consultas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Tbl_Consultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Tbl_ConsultasMouseClicked(evt);
@@ -291,6 +300,16 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
             }
         });
 
+        BotonImprimir.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        BotonImprimir.setText("Imprimir");
+        BotonImprimir.setMaximumSize(new java.awt.Dimension(99, 37));
+        BotonImprimir.setMinimumSize(new java.awt.Dimension(99, 37));
+        BotonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -313,8 +332,10 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Cb_Año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(BotonBuscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(77, 77, 77)
+                        .addComponent(BotonBuscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(BotonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -324,7 +345,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Cb_Dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +353,8 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                     .addComponent(Cb_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(Cb_Año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonBuscarRegistros))
+                    .addComponent(BotonBuscarRegistros)
+                    .addComponent(BotonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -379,13 +401,21 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
             }
         });
 
+        BotonReporteGasto.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        BotonReporteGasto.setText("Reporte");
+        BotonReporteGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonReporteGastoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(84, 84, 84)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,16 +425,22 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                         .addGap(135, 135, 135)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txt_Cantidad_Gasto, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                            .addComponent(Txt_Cantidad_Gasto, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(131, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Radiogastoventa)
-                            .addComponent(RadioGastoCorriente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Boton_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(Boton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(Radiogastoventa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(RadioGastoCorriente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Boton_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)))
+                        .addComponent(BotonReporteGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(Boton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,9 +464,10 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                         .addContainerGap(27, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Boton_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                            .addComponent(Boton_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Boton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Boton_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonReporteGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55))))
         );
 
@@ -485,6 +522,14 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
             }
         });
 
+        BotonReporteMuestra.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        BotonReporteMuestra.setText("Reporte");
+        BotonReporteMuestra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonReporteMuestraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -492,7 +537,6 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lbl_Texto_verificar_Nombre_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -503,10 +547,13 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                         .addGap(135, 135, 135)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Txt_Cantidad_Rebajar)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Lbl_Texto_verificar_Nombre_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(218, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonReporteMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
                 .addComponent(BtonGuardarMuestras, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
                 .addComponent(BotonSAlirMuestras, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -532,8 +579,12 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
                 .addComponent(Lbl_Texto_verificar_Nombre_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtonGuardarMuestras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSAlirMuestras, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(BotonSAlirMuestras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtonGuardarMuestras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonReporteMuestra, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(339, 339, 339))
         );
 
@@ -545,7 +596,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Muestras", jPanel5);
@@ -728,6 +779,53 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
             Logger.getLogger(Mi_Frm_Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BtonGuardarMuestrasActionPerformed
+
+    private void BotonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonImprimirActionPerformed
+        // TODO add your handling code here:
+        try{
+        Connection con = Ms_Conexion.getConexion();
+        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Ingresos.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+        JasperViewer.viewReport(jp, false);
+        con.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BotonImprimirActionPerformed
+
+    private void BotonReporteGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonReporteGastoActionPerformed
+        // TODO add your handling code here:
+        try{
+        Connection con = Ms_Conexion.getConexion();
+        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Gastos.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+        JasperViewer.viewReport(jp, false);
+        con.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BotonReporteGastoActionPerformed
+
+    private void BotonReporteMuestraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonReporteMuestraActionPerformed
+        // TODO add your handling code here:
+        
+        
+        try{
+        Connection con = Ms_Conexion.getConexion();
+        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Muestras.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+        JasperViewer.viewReport(jp, false);
+        con.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }             
+    }//GEN-LAST:event_BotonReporteMuestraActionPerformed
    
     public void consultalikeregistros(){
         DefaultTableModel modelo = (DefaultTableModel) Tabla_Reporte_Ingresos.getModel();
@@ -892,6 +990,9 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAñadirExistencia;
     private javax.swing.JButton BotonBuscarRegistros;
+    private javax.swing.JButton BotonImprimir;
+    private javax.swing.JButton BotonReporteGasto;
+    private javax.swing.JButton BotonReporteMuestra;
     private javax.swing.JButton BotonSAlirMuestras;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton Boton_Generar_Consultas;

@@ -5,6 +5,7 @@
  */
 package src;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -16,6 +17,11 @@ import javax.naming.spi.DirStateFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.scripts.JO;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -71,6 +77,7 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Boton_registrar_Usuario = new javax.swing.JButton();
         Boton_Menu_Principal = new javax.swing.JButton();
+        BotonReporte = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Txt_Confirmar_Contrasenia = new javax.swing.JPasswordField();
         Txt_Confirmar_Contraseña = new javax.swing.JLabel();
@@ -159,15 +166,25 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
             }
         });
 
+        BotonReporte.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        BotonReporte.setText("Reporte");
+        BotonReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(27, 27, 27)
                 .addComponent(Boton_registrar_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                .addComponent(Boton_Menu_Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(BotonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(Boton_Menu_Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -176,7 +193,8 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Boton_registrar_Usuario)
-                    .addComponent(Boton_Menu_Principal))
+                    .addComponent(Boton_Menu_Principal)
+                    .addComponent(BotonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -537,6 +555,21 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
     private void Txt_Nombre_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_Nombre_UsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_Nombre_UsuarioActionPerformed
+
+    private void BotonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonReporteActionPerformed
+        // TODO add your handling code here:
+        try{
+        Connection con = Ms_Conexion.getConexion();
+        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Usuarios.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+        JasperViewer.viewReport(jp, false);
+        con.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        } 
+    }//GEN-LAST:event_BotonReporteActionPerformed
     
     
     
@@ -603,6 +636,7 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonReporte;
     private javax.swing.JButton Boton_Menu_Principal;
     private javax.swing.JButton Boton_ValidaDatos;
     private javax.swing.JButton Boton_registrar_Usuario;

@@ -47,13 +47,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
          
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Ms_Frm_Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Ms_Frm_Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Ms_Frm_Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Ms_Frm_Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -75,6 +69,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
         Txt_Contraseña_Usuaro = new javax.swing.JPasswordField();
         Boton_Olvido_Conraseña = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
+        Btn_Credenciales = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,7 +82,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
 
         InicioSesionBotton.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         InicioSesionBotton.setText("Inicio de Sesión");
-        InicioSesionBotton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        InicioSesionBotton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         InicioSesionBotton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InicioSesionBottonActionPerformed(evt);
@@ -97,7 +92,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
 
         BotonSalir.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         BotonSalir.setText("Salir");
-        BotonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSalirActionPerformed(evt);
@@ -137,17 +132,25 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
         PanelPrincipal.add(Txt_Contraseña_Usuaro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 190, -1));
 
         Boton_Olvido_Conraseña.setText("¿Olvidaste tu Contraseña?");
-        Boton_Olvido_Conraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Olvido_Conraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Olvido_Conraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_Olvido_ConraseñaActionPerformed(evt);
             }
         });
-        PanelPrincipal.add(Boton_Olvido_Conraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, -1, -1));
+        PanelPrincipal.add(Boton_Olvido_Conraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel4.setText("Bienvenido");
         PanelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, 60));
+
+        Btn_Credenciales.setText("Credenciales SQL");
+        Btn_Credenciales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CredencialesActionPerformed(evt);
+            }
+        });
+        PanelPrincipal.add(Btn_Credenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 160, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo_Inicio_Sesion.jpg"))); // NOI18N
         PanelPrincipal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 500));
@@ -230,7 +233,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
                     
         }else{
             
-            JOptionPane.showMessageDialog(null, "Datos Incorrectos","Erroe de Conexion",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Datos Incorrectos","Error de Conexion",JOptionPane.ERROR_MESSAGE);
             Txt_Id_Usuario.setText( "");
             Txt_Contraseña_Usuaro.setText( "");
         }
@@ -268,6 +271,12 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_Txt_Contraseña_UsuaroKeyPressed
 
+    private void Btn_CredencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CredencialesActionPerformed
+        // TODO add your handling code here:
+        login.dispose();
+        new Ms_Frm_CredencialesSQL();
+    }//GEN-LAST:event_Btn_CredencialesActionPerformed
+
     
     
     public static void main(String args[]) {
@@ -278,6 +287,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonSalir;
     private javax.swing.JToggleButton Boton_Olvido_Conraseña;
+    private javax.swing.JButton Btn_Credenciales;
     private javax.swing.JButton InicioSesionBotton;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPasswordField Txt_Contraseña_Usuaro;
