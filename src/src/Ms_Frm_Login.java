@@ -274,7 +274,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
     private void Btn_CredencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CredencialesActionPerformed
         // TODO add your handling code here:
         login.dispose();
-        new Ms_Frm_CredencialesSQL();
+        new Ms_Frm_CredencialesSQL().setVisible(true);
     }//GEN-LAST:event_Btn_CredencialesActionPerformed
 
     

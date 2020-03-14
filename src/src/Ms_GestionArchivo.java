@@ -20,6 +20,13 @@ public class Ms_GestionArchivo{
     
     public Ms_GestionArchivo(String path){
         texto = new File(path);
+        if(!texto.exists()){
+            try {
+                texto.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(Ms_GestionArchivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public String[] leerArchivo(){
@@ -44,10 +51,14 @@ public class Ms_GestionArchivo{
     public boolean escribirArchivo(String[] arr){
         try {
             FileWriter fw = new FileWriter(texto);
-            fw.write(arr[0]);
+            fw.flush();
+            fw.write(arr[0] + "\n");
             for(int i = 1; i < arr.length; i++){
-                fw.write(arr[i] + "\n");
+                fw.flush();
+                fw.append(arr[i] + "\n");
             }
+            fw.flush();
+            fw.append(arr[arr.length - 1]);
             return true;
         } catch (IOException ex) {
             Logger.getLogger(Ms_GestionArchivo.class.getName()).log(Level.SEVERE, null, ex);

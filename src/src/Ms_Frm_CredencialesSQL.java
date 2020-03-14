@@ -5,6 +5,8 @@
  */
 package src;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,9 +24,15 @@ public class Ms_Frm_CredencialesSQL extends javax.swing.JFrame {
     public Ms_Frm_CredencialesSQL() {
         initComponents();
         String[] textos = new Ms_GestionArchivo("src\\Misc\\CredencialesSQL.txt").leerArchivo();
-        jTextField1.setText(textos[0]);
-        jTextField2.setText(textos[1]);
-        jTextField3.setText(textos[2]);
+        try {
+            if(textos.length >= 3){
+                jTextField1.setText(textos[0]);
+                jTextField2.setText(textos[1]);
+                jTextField3.setText(textos[2]);
+            }
+        } catch (NullPointerException e) {
+            Logger.getLogger(Ms_GestionArchivo.class.getName()).log(Level.SEVERE, null, e);
+        }
         //Ms_GestionArchivo gestor = new Ms_GestionArchivo("src\\Misc\\CredencialesSQL.txt");
     }
 
