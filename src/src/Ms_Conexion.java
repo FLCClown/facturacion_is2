@@ -114,22 +114,6 @@ public class Ms_Conexion {
      
      }
      
-     public static String[] getCredenciales(){
-        String[] credenciales = new String[3];
-        File texto = new File("src\\Misc\\CredencialesSQL.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(texto));
-            for(int i = 0; i < 3; i++){
-                credenciales[i] = br.readLine();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Ms_Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Ms_Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         return credenciales;
-     }
-     
      
 }
     

@@ -784,7 +784,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         Connection con = Ms_Conexion.getConexion();
-        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Ingresos.jrxml";
+        String reportPath = new gestorCaminos("\\jasper\\Ingresos.jrxml").getCamino();
         JasperReport jr = JasperCompileManager.compileReport(reportPath);
         JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
         JasperViewer.viewReport(jp, false);
@@ -799,7 +799,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         Connection con = Ms_Conexion.getConexion();
-        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Gastos.jrxml";
+        String reportPath = new gestorCaminos("\\jasper\\Gastos.jrxml").getCamino();
         JasperReport jr = JasperCompileManager.compileReport(reportPath);
         JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
         JasperViewer.viewReport(jp, false);
@@ -816,7 +816,7 @@ public class Mi_Frm_Inventario extends javax.swing.JFrame {
         
         try{
         Connection con = Ms_Conexion.getConexion();
-        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Muestras.jrxml";
+        String reportPath = new gestorCaminos("\\jasper\\Muestras.jrxml").getCamino();
         JasperReport jr = JasperCompileManager.compileReport(reportPath);
         JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
         JasperViewer.viewReport(jp, false);

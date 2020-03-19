@@ -560,7 +560,7 @@ public class Mc_Frm_Registro_Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         Connection con = Ms_Conexion.getConexion();
-        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Usuarios.jrxml";
+        String reportPath = new gestorCaminos("\\jasper\\Usuarios.jrxml").getCamino();
         JasperReport jr = JasperCompileManager.compileReport(reportPath);
         JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
         JasperViewer.viewReport(jp, false);

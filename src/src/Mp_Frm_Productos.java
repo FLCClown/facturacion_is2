@@ -298,7 +298,7 @@ public class Mp_Frm_Productos extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         Connection con = Ms_Conexion.getConexion();
-        String reportPath = "D:\\UJCV\\Ing. Software\\App_SINVEN_IS2\\jasper\\Productos.jrxml";
+        String reportPath = new gestorCaminos("\\jasper\\Productos.jrxml").getCamino();
         JasperReport jr = JasperCompileManager.compileReport(reportPath);
         JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
         JasperViewer.viewReport(jp, false);
