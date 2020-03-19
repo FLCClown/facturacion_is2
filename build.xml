@@ -11,7 +11,7 @@
     
     <target name= "-post-jar">
     <jar jarfile="${dist.jar}" update="true">
-    <zipfileset src="D:\UJCV\Ing. Software\App_SINVEN_IS2\jars\sqljdbc4.jar" excludes="META-INF/*"/>
+    <zipfileset src="D:\UJCV\IS2\App_SINVEN_IS2\jars\sqljdbc4.jar" excludes="META-INF/*"/>
     </jar>
 </target>
     
