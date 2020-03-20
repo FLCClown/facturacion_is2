@@ -23,7 +23,7 @@ public class Ms_Frm_CredencialesSQL extends javax.swing.JFrame {
      */
     public Ms_Frm_CredencialesSQL() {
         initComponents();
-        String[] textos = new Ms_GestionArchivo("src\\Misc\\CredencialesSQL.txt").leerArchivo();
+        String[] textos = new Ms_GestionArchivo("Misc\\CredencialesSQL.txt").leerArchivo();
         try {
             if(textos.length >= 3){
                 jTextField1.setText(textos[0]);

@@ -20,6 +20,9 @@ public class Ms_GestionArchivo{
     
     public Ms_GestionArchivo(String path){
         texto = new File(path);
+        if(!new File(texto.getParent()).exists()){
+            new File(texto.getParent()).mkdir();
+        }
         if(!texto.exists()){
             try {
                 texto.createNewFile();

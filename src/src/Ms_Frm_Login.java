@@ -22,7 +22,7 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
 
     private JFrame login = new JFrame();
     
-    String str = new gestorCaminos("\\jasper\\Productos.jrxml").getCamino();
+    
     
     
     public static int UsuarioId = 0;
@@ -32,7 +32,9 @@ public class Ms_Frm_Login extends javax.swing.JFrame {
         
         initComponents();
         
-        System.out.println(str);
+        //Bloque para pruebas de consola
+        
+        //Fin Bloque
         
         login.setContentPane(PanelPrincipal);
         
