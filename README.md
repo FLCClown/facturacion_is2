@@ -10,3 +10,7 @@ Pegar la URL copiada en el campo "URL de repositorio".
 Llenar su información de usuario y contraseña de GitHub y especificar carpeta de destino; click en "Siguiente".
 Seleccionar su rama remota, seleccionen SOLAMENTE la rama con su nombre como rama remota; Click en "Siguiente".
 Asegurarse de que esté seleccionada la opción "Escanear clon por proyectos de Netbeans"; Click en "Finalizar".
+
+En su primera ejecución, antes de intentar entrar a la aplicación, click en "Credenciales de SQL".
+En la ventana abierta, llenar los campos con la información pedida:
+URL de su base de datos, usuario y contraseña de su servidor; click en "Aceptar".
